@@ -1,21 +1,32 @@
 <div class="example-header">
-    <!-- <mat-form-field>
+    <mat-form-field>
         <mat-label>Select a Column</mat-label>
-        <mat-select [(value)]="filterCol">
+        <mat-select (selectionChange)="colChange()" [(value)]="filterCol">
             <mat-option *ngFor="let column of displayedColumns" value="{{column}}">{{column}}</mat-option>
         </mat-select>
-    </mat-form-field> -->
-    <mat-form-field>
-        <input matInput [(ngModel)]="filterText" (keyup)="applyFilter($event.target.value)" placeholder="Filter">
     </mat-form-field>
+    <mat-form-field>
+        <mat-label>Select type of filter</mat-label>
+        <mat-select [(value)]="filterName">
+            <mat-option *ngIf="typeOfFilter == 'string'" value="contains">contains</mat-option>
+            <mat-option *ngIf="typeOfFilter == 'string'" value="notContains">does not contains</mat-option>
+            <mat-option *ngIf="typeOfFilter == 'number'" value="equals">equals</mat-option>
+            <mat-option *ngIf="typeOfFilter == 'number'" value="greater">greater than</mat-option>
+            <mat-option *ngIf="typeOfFilter == 'number'" value="less">less than</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput [(ngModel)]="filterText" placeholder="Filter">
+    </mat-form-field>
+    <button mat-raised-button (click)="applyFilter()">Apply Filter</button>
     <button mat-raised-button (click)="clearFilter()">Clear Filter</button>
 </div>
 
 <div class="example-container mat-elevation-z8">
 
-    <mat-table [dataSource]="dataSource" matSort>
+    <mat-table [dataSource]="dataSource" >
         <ng-container *ngFor="let column of displayedColumns" [matColumnDef]="column">
-            <mat-header-cell *matHeaderCellDef mat-sort-header> {{column}} </mat-header-cell>
+            <mat-header-cell *matHeaderCellDef> {{column}} </mat-header-cell>
             <mat-cell *matCellDef="let row"> {{row[column]}} </mat-cell>
         </ng-container>
 

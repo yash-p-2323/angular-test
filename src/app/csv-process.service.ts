@@ -3,9 +3,11 @@ import { Injectable } from '@angular/core';
 @Injectable({
   providedIn: 'root'
 })
+
+
 export class CsvProcessService {
   private dataObj: any = {};
-  private columns: any = [];
+  private columns: any = ['id','firstName','lastName','email','price','quantity','totalSpend'];
   constructor() { }
 
   async setFileData(file) {
@@ -19,15 +21,13 @@ export class CsvProcessService {
   
       let allTextLines = [];
       allTextLines = csv.split(/\r\n|\r/);
-      let headers = allTextLines[0].split(',');
-      this.columns = headers;
-    
+
       let arrl = allTextLines.length;
       for (let i = 1; i < arrl; i++) {
         var obj = {};
         var row = allTextLines[i].split(',');
         for(var j = 0; j < row.length; j++) {
-          obj[headers[j].trim()] = row[j].trim();
+          obj[this.columns[j].trim()] = row[j].trim();
        }
        jsonObj.push(obj);
       }
