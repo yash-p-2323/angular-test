@@ -1,11 +1,13 @@
 <div class="example-header">
-    <mat-form-field>
+    
+    <div>
+    <mat-form-field class="form-field">
         <mat-label>Select a Column</mat-label>
         <mat-select (selectionChange)="colChange()" [(value)]="filterCol">
             <mat-option *ngFor="let column of displayedColumns" value="{{column}}">{{column}}</mat-option>
         </mat-select>
     </mat-form-field>
-    <mat-form-field>
+    <mat-form-field class="form-field">
         <mat-label>Select type of filter</mat-label>
         <mat-select [(value)]="filterName">
             <mat-option *ngIf="typeOfFilter == 'string'" value="contains">contains</mat-option>
@@ -15,11 +17,14 @@
             <mat-option *ngIf="typeOfFilter == 'number'" value="less">less than</mat-option>
         </mat-select>
     </mat-form-field>
-    <mat-form-field>
+    <mat-form-field class="form-field">
         <input matInput [(ngModel)]="filterText" placeholder="Filter">
     </mat-form-field>
-    <button mat-raised-button (click)="applyFilter()">Apply Filter</button>
-    <button mat-raised-button (click)="clearFilter()">Clear Filter</button>
+</div>
+<div>
+    <button mat-raised-button color="accent" (click)="applyFilter()">Apply Filter</button>
+    <button mat-raised-button color="accent" (click)="clearFilter()">Clear Filter</button>
+</div>
 </div>
 
 <div class="example-container mat-elevation-z8">

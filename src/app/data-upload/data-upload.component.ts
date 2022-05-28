@@ -9,6 +9,7 @@ import { CsvProcessService } from '../csv-process.service';
 export class DataUploadComponent implements OnInit {
   fileuploaded:boolean=false;
   selectedFiles:any;
+  IsWait:boolean=false;
 
   constructor(public fileProcess:CsvProcessService) { }
 
@@ -16,8 +17,9 @@ export class DataUploadComponent implements OnInit {
   }
 
   async selectFile(event) {
+    this.IsWait = true;
     this.selectedFiles = event.target.files;
-    this.fileProcess.setFileData(this.selectedFiles[0]).then(()=>this.fileuploaded = true);
+    this.fileProcess.setFileData(this.selectedFiles[0]).then(()=>{this.fileuploaded = true;this.IsWait=false;});
     
     
 }

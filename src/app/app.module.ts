@@ -35,7 +35,8 @@ import { FormsModule } from '@angular/forms';
     MatIconModule,
     MatPaginatorModule,
     MatSelectModule,
-    FormsModule
+    FormsModule,
+    MatProgressSpinnerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

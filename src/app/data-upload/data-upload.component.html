@@ -5,9 +5,10 @@
     </ng-template>
     <input matInput disabled>
     <button mat-icon-button matSuffix (click)="fileInput.click()">
-        <mat-icon>attach_file</mat-icon>
+        <mat-icon color="accent">attach_file</mat-icon>
     </button>
     <input hidden (change)="selectFile($event)" #fileInput type="file" id="file">
 </mat-form-field>
-
+<mat-progress-spinner class="spinner" mode="indeterminate" color="accent" *ngIf="IsWait" >
+</mat-progress-spinner>
 <app-data-table *ngIf="fileuploaded"></app-data-table>
